@@ -1,5 +1,9 @@
 # ASADI - AI-Powered Educational Assistant
 
+[![Python](https://img.shields.io/badge/Python-3.8%2B-blue)](https://www.python.org/)
+[![Django](https://img.shields.io/badge/Django-Framework-green)](https://www.djangoproject.com/)
+[![RAG](https://img.shields.io/badge/AI-RAG%20%26%20LLM-orange)]()
+
 **[Version française](README.fr.md)**
 
 > **Bachelor's Degree Final Project** - Computer Science

@@ -1,5 +1,9 @@
 # ASADI - Assistant Éducatif Intelligent Propulsé par l'IA
 
+[![Python](https://img.shields.io/badge/Python-3.8%2B-blue)](https://www.python.org/)
+[![Django](https://img.shields.io/badge/Django-Framework-green)](https://www.djangoproject.com/)
+[![RAG](https://img.shields.io/badge/AI-RAG%20%26%20LLM-orange)]()
+
 **[English version](README.md)**
 
 > **Projet de Fin de Licence** - Informatique
