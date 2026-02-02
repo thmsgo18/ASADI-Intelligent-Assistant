@@ -6,6 +6,12 @@
 
 **[English version](README.md)**
 
+## 🎥 Vidéo de présentation
+
+[![Présentation ASADI](https://img.youtube.com/vi/R9_37XSuseA/0.jpg)](https://youtu.be/R9_37XSuseA?si=hrPrp8v_6X1IcVmh)
+
+*Cliquez sur l'image ci-dessus pour visionner la vidéo de présentation du projet*
+
 > **Projet de Fin de Licence** - Informatique
 > 
 > Ce projet constitue un projet de fin d'études de Licence en Informatique, démontrant l'intégration de technologies d'IA modernes avec des frameworks de développement web traditionnels.

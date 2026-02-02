@@ -6,6 +6,12 @@
 
 **[Version française](README.fr.md)**
 
+## 🎥 Presentation Video
+
+[![ASADI Presentation](https://img.youtube.com/vi/R9_37XSuseA/0.jpg)](https://youtu.be/R9_37XSuseA?si=hrPrp8v_6X1IcVmh)
+
+*Click on the image above to watch the project presentation video*
+
 > **Bachelor's Degree Final Project** - Computer Science
 > 
 > This project is a final year project for a Bachelor's degree in Computer Science, demonstrating the integration of modern AI technologies with traditional web development frameworks.
