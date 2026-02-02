@@ -8,7 +8,7 @@
 
 ## 🎥 Presentation Video
 
-[![ASADI Presentation](https://img.youtube.com/vi/R9_37XSuseA/0.jpg)](https://youtu.be/R9_37XSuseA?si=hrPrp8v_6X1IcVmh)
+[![ASADI Presentation](https://img.youtube.com/vi/R9_37XSuseA/maxresdefault.jpg)](https://youtu.be/R9_37XSuseA?si=hrPrp8v_6X1IcVmh)
 
 *Click on the image above to watch the project presentation video*
 
