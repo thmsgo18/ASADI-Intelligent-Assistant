@@ -1,44 +1,323 @@
-# ASADI
+# ASADI - AI-Powered Educational Assistant
 
-## À propos du projet
-ASADI est une application Django utilisant un système RAG avec ChromaDB et un LLM. Elle permet aux utilisateurs de filtrer les contextes lors des requêtes au LLM à travers une fonctionnalité de sélection de workspace.
+[![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
+[![Python](https://img.shields.io/badge/python-3.8+-blue.svg)](https://www.python.org/downloads/)
+[![Django](https://img.shields.io/badge/django-5.2-green.svg)](https://www.djangoproject.com/)
 
-## Gestion de version
-Ce projet est versionné simultanément avec :
-- **SVN** : Système de versionnage principal
-- **GitHub** : Système de versionnage secondaire
+**[Version française](README.fr.md)**
 
-Cette double gestion de version permet de bénéficier des avantages des deux systèmes :
-- SVN pour la compatibilité avec les processus existants
-- GitHub pour la collaboration, les pull requests et l'intégration avec d'autres outils
+> **Bachelor's Degree Final Project** - Computer Science
+> 
+> This project is a final year project for a Bachelor's degree in Computer Science, demonstrating the integration of modern AI technologies with traditional web development frameworks.
 
-## Installation et configuration
+## Table of Contents
 
-### Prérequis
-- Python 3.8+
-- Django
-- Autres dépendances listées dans `requirements.txt`
+- [Overview](#overview)
+- [Key Features](#key-features)
+- [Architecture](#architecture)
+- [Technologies](#technologies)
+- [Installation](#installation)
+- [Usage](#usage)
+- [Project Structure](#project-structure)
+- [Documentation](#documentation)
+- [Version Control](#version-control)
+- [Contributing](#contributing)
 
-### Installation
+## Overview
+
+**ASADI** (AI-Assisted System for Document Intelligence) is an intelligent educational platform built with Django that leverages advanced AI technologies to provide contextual assistance to students and educators. The system implements a **RAG (Retrieval-Augmented Generation)** architecture using **ChromaDB** as a vector database and integrates with modern **Large Language Models (LLMs)** to deliver accurate, context-aware responses.
+
+The platform allows users to interact with educational documents through natural language queries, while offering advanced features such as quiz generation, scenario-based learning, and workspace management for organizing educational content.
+
+## Key Features
+
+### AI-Powered Conversational Interface
+- **RAG System**: Combines semantic search with generative AI for accurate responses
+- **Vector Database**: Uses ChromaDB for efficient document embedding storage and retrieval
+- **LLM Integration**: Powered by OpenAI's GPT models via LlamaIndex
+- **Context Filtering**: Workspace-based filtering to provide relevant contextual responses
+
+### Document Management
+- Upload and organize educational documents (PDF, Word, etc.)
+- Automatic document chunking and vectorization
+- Multi-workspace organization for different courses or topics
+- Document versioning and tracking
+
+### Prompt & Conversation History
+- Save and manage conversation threads
+- Review past interactions and their context
+- Share prompts between users
+- Export conversation history
+
+### Quiz Generation & Assessment
+- AI-powered quiz creation from document content
+- Multiple question types support
+- Automatic grading and feedback
+- Progress tracking and performance analytics
+
+### Scenario-Based Learning
+- Create interactive learning scenarios
+- Guided question-and-answer sequences
+- Student progress tracking
+- Feedback and evaluation system
+
+### User Management
+- Role-based access control (Students, Educators, Administrators)
+- Custom user authentication backend
+- User activity tracking
+- Profile management
+
+### Workspace Organization
+- Create dedicated workspaces for different subjects
+- Associate documents with specific workspaces
+- Filter AI responses based on workspace context
+- Collaborative workspace sharing
+
+## Architecture
+
+ASADI follows a modern **Model-View-Template (MVT)** architecture with additional AI components:
+
+```
+┌─────────────────┐
+│   User Interface│
+│   (Templates)   │
+└────────┬────────┘
+         │
+┌────────▼────────┐
+│  Django Views   │
+│   & URLs        │
+└────────┬────────┘
+         │
+    ┌────┴────┬──────────────┬──────────────┐
+    │         │              │              │
+┌───▼────┐ ┌─▼──────┐ ┌────▼─────┐ ┌─────▼──────┐
+│ Models │ │  RAG   │ │ ChromaDB │ │ LLM (GPT)  │
+│        │ │ Engine │ │ (Vector) │ │ LlamaIndex │
+└────────┘ └────────┘ └──────────┘ └────────────┘
+```
+
+### RAG Pipeline
+1. **Document Ingestion**: Documents are uploaded and processed
+2. **Chunking**: Documents are split into semantic chunks
+3. **Embedding**: Chunks are converted to vector embeddings using Sentence Transformers
+4. **Storage**: Embeddings are stored in ChromaDB
+5. **Query Processing**: User queries are embedded and matched against stored vectors
+6. **Context Retrieval**: Relevant chunks are retrieved based on similarity
+7. **Response Generation**: LLM generates contextual responses using retrieved chunks
+
+## Technologies
+
+### Backend
+- **Django 5.2** - Web framework
+- **Python 3.8+** - Programming language
+- **SQLite** - Relational database (development)
+- **ChromaDB** - Vector database for embeddings
+
+### AI & Machine Learning
+- **LlamaIndex** - LLM orchestration framework
+- **OpenAI GPT** - Large Language Model
+- **Sentence Transformers** - Text embedding models
+- **all-mpnet-base-v2** - Embedding model
+- **LangChain** - LLM application framework
+
+### Frontend
+- **HTML5 / CSS3** - Markup and styling
+- **JavaScript** - Client-side interactivity
+- **Bootstrap** - Responsive design framework
+
+### Additional Tools
+- **BeautifulSoup4** - HTML parsing
+- **NLTK** - Natural language processing
+- **httpx** - Async HTTP client
+
+## Installation
+
+### Prerequisites
+- Python 3.8 or higher
+- pip (Python package manager)
+- Git
+- Virtual environment tool (venv or virtualenv)
+
+### Setup Instructions
+
+1. **Clone the repository**
 ```bash
-# Créer un environnement virtuel
+git clone https://github.com/thmsgo18/asadi.git
+cd asadi
+```
+
+2. **Create and activate a virtual environment**
+```bash
+# On macOS/Linux
+python3 -m venv venv
+source venv/bin/activate
+
+# On Windows
 python -m venv venv
-source venv/bin/activate  # Sur Windows: venv\Scripts\activate
+venv\Scripts\activate
+```
 
-# Installer les dépendances
+3. **Install dependencies**
+```bash
 pip install -r requirements.txt
+```
 
-# Configurer l'environnement
-# Copier .env.example en .env et modifier selon vos besoins
+4. **Configure environment variables**
+```bash
+# Create a .env file in the project root
+cp .env.example .env
+# Edit .env with your configuration (API keys, database settings, etc.)
+```
 
-# Lancer le serveur de développement
+5. **Apply database migrations**
+```bash
+python manage.py makemigrations
+python manage.py migrate
+```
+
+6. **Create a superuser (admin)**
+```bash
+python manage.py createsuperuser
+```
+
+7. **Collect static files**
+```bash
+python manage.py collectstatic
+```
+
+8. **Run the development server**
+```bash
 python manage.py runserver
 ```
 
-## Structure du projet
-- **ASADI/** : Application principale Django
-- **documents/** : Gestion des documents
-- **prompts/** : Gestion des prompts pour le LLM
-- **scenario/** : Fonctionnalités liées aux scénarios
-- **utilisateurs/** : Gestion des utilisateurs
-- **workspace/** : Gestion des workspaces pour filtrer les contextes
+The application will be available at `http://127.0.0.1:8000/`
+
+### ChromaDB Setup
+
+The vector database will be automatically initialized on first document upload. The database is stored in the `chroma_db/` directory.
+
+## Usage
+
+### For Students
+1. **Register/Login** to your account
+2. **Browse available workspaces** to access course materials
+3. **Ask questions** using the prompt interface
+4. **Take quizzes** generated from course content
+5. **Complete scenarios** for guided learning
+
+### For Educators
+1. **Create workspaces** for your courses
+2. **Upload documents** (lecture notes, PDFs, etc.)
+3. **Generate quizzes** automatically from content
+4. **Create scenarios** for interactive learning
+5. **Monitor student progress** and performance
+
+### For Administrators
+1. **Manage users** and permissions
+2. **Configure workspaces** and documents
+3. **Monitor system usage** and performance
+4. **Access admin panel** at `/admin`
+
+## Project Structure
+
+```
+ASADI/
+├── ASADI/                  # Main Django configuration
+│   ├── settings.py         # Project settings
+│   ├── urls.py             # URL routing
+│   ├── views.py            # Global views
+│   └── static/             # Static files (CSS, JS)
+├── documents/              # Document management app
+│   ├── models.py           # Document models
+│   ├── views.py            # Document views
+│   └── utils.py            # Document utilities
+├── prompts/                # Conversation management
+│   ├── models.py           # Prompt/Question/Response models
+│   └── views.py            # Chat interface views
+├── quiz/                   # Quiz management
+│   ├── models.py           # Quiz models
+│   ├── views.py            # Quiz views
+│   └── questions/          # Question templates
+├── scenario/               # Scenario-based learning
+│   ├── models.py           # Scenario models
+│   └── views.py            # Scenario views
+├── utilisateurs/           # User management
+│   ├── models.py           # Custom user model
+│   ├── backends.py         # Authentication backend
+│   └── views.py            # User views
+├── workspace/              # Workspace management
+│   ├── models.py           # Workspace models
+│   └── views.py            # Workspace views
+├── src/                    # AI/RAG core functionality
+│   ├── api.py              # LLM API integration
+│   ├── reponse.py          # Response generation
+│   ├── ingererDonnee.py    # Document ingestion
+│   ├── split.py            # Document chunking
+│   └── extractions.py      # Data extraction utilities
+├── chroma_db/              # Vector database storage
+├── documentation/          # Project documentation
+│   ├── Cahier des charges.pdf
+│   ├── Manuel d'utilisation.pdf
+│   ├── Manuel d'installation.pdf
+│   ├── Conception détaillée.pdf
+│   ├── Rapport de tests.pdf
+│   └── Rapport final.pdf
+├── media/                  # User-uploaded files
+├── manage.py               # Django management script
+└── requirements.txt        # Python dependencies
+```
+
+## Documentation
+
+Comprehensive documentation is available in the `documentation/` directory:
+
+- **Cahier des charges.pdf** - Project specifications and requirements
+- **Manuel d'utilisation.pdf** - User manual
+- **Manuel d'installation.pdf** - Installation guide
+- **Conception détaillée.pdf** - Detailed design documentation
+- **Rapport de tests.pdf** - Testing report
+- **Rapport final.pdf** - Final project report
+- **Technique.pdf** - Technical documentation
+- **Cahier de recette.pdf** - Acceptance testing documentation
+
+## Version Control
+
+This project uses dual version control:
+- **Git/GitHub** - Primary version control ([github.com/thmsgo18/asadi](https://github.com/thmsgo18/asadi))
+- **SVN** - Legacy version control for institutional compatibility
+
+This dual approach ensures:
+- Modern collaborative workflows via GitHub (pull requests, issues, actions)
+- Compatibility with existing institutional SVN infrastructure
+- Automatic synchronization between both systems via `sync_svn_git.sh`
+
+## Contributing
+
+This is an academic project completed as part of a Bachelor's degree program. While the project is primarily for educational purposes, feedback and suggestions are welcome.
+
+If you'd like to contribute or report issues:
+1. Fork the repository
+2. Create a feature branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
+
+## License
+
+This project is part of an academic curriculum and is provided as-is for educational purposes.
+
+## Authors
+
+Bachelor's Degree in Computer Science Students - L3 Promotion 2024-2025
+
+## Acknowledgments
+
+- University supervisors and faculty
+- OpenAI for GPT models
+- ChromaDB team for the vector database
+- Django and Python communities
+- All open-source contributors whose libraries made this project possible
+
+---
+
+**For more information, please refer to the comprehensive documentation in the `documentation/` directory.**

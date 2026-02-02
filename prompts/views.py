@@ -289,29 +289,53 @@ def prompt(request):
             user.save()
 
         # ─── pipeline RAG + LLM ─────────────────────────────────────────
-        query_embeddings = embedding_fn([user_input])  # liste de 1 seul élément
-
+        try:
+            query_embeddings = embedding_fn([user_input])  # liste de 1 seul élément
+        except Exception as e:
+            print(f"Erreur lors de la génération des embeddings: {str(e)}")
+            raw_answer = "Une erreur s'est produite lors du traitement de votre requête. Veuillez réessayer plus tard."
+            linked_answer = linkify_documents(raw_answer)
+            llm_reponse = Reponse.objects.create(rep=linked_answer)
+            question.reponse = llm_reponse
+            question.save()
+            return redirect(f"{request.path}?prompt_id={current_prompt.id}{'&workspace='+workspace_selected if workspace_selected else ''}")
 
         # Filtrer les contextes par workspace si sélectionné
-# TEEEEEEEEST
-        results = hybrid_retrieve(user_input, n_results=8, workspace=workspace_selected)
-
-
+        try:
+            results = hybrid_retrieve(user_input, n_results=8, workspace=workspace_selected)
+        except Exception as e:
+            print(f"Erreur lors de la recherche de documents: {str(e)}")
+            raw_answer = "Une erreur s'est produite lors de la recherche de documents. Veuillez réessayer plus tard."
+            linked_answer = linkify_documents(raw_answer)
+            llm_reponse = Reponse.objects.create(rep=linked_answer)
+            question.reponse = llm_reponse
+            question.save()
+            return redirect(f"{request.path}?prompt_id={current_prompt.id}{'&workspace='+workspace_selected if workspace_selected else ''}")
 
         # Si aucun document chargé, on ne fait pas appel au LLM
         if not results or not results[0][0]:
             raw_answer = "Aucun document chargé, je ne peux pas répondre."
         else:
             # Prépare l'historique
-            history_messages = []
-            for q in current_prompt.questions.order_by('date_creation'):
-                history_messages.append({"role":"user",      "content":q.questionPrompt})
-                if q.reponse:
-                    history_messages.append({"role":"assistant", "content":q.reponse.rep})
-            raw_answer = reponseAssistant(results, user_input, history_messages)
-            if raw_answer is None:
-                raw_answer = "Je n'ai pas pu obtenir de réponse du LLM. Veuillez réessayer plus tard."
-        linked_answer = linkify_documents(raw_answer)
+            try:
+                history_messages = []
+                for q in current_prompt.questions.order_by('date_creation'):
+                    history_messages.append({"role":"user",      "content":q.questionPrompt})
+                    if q.reponse:
+                        history_messages.append({"role":"assistant", "content":q.reponse.rep})
+                
+                raw_answer = reponseAssistant(results, user_input, history_messages)
+                if raw_answer is None:
+                    raw_answer = "Je n'ai pas pu obtenir de réponse du LLM. Veuillez réessayer plus tard."
+            except Exception as e:
+                print(f"Erreur lors de l'appel à reponseAssistant: {str(e)}")
+                raw_answer = "Une erreur s'est produite lors de la génération de la réponse. Veuillez réessayer plus tard."
+        
+        try:
+            linked_answer = linkify_documents(raw_answer)
+        except Exception as e:
+            print(f"Erreur lors de la conversion des liens: {str(e)}")
+            linked_answer = raw_answer
         # ────────────────────────────────────────────────────────────────
 
         llm_reponse      = Reponse.objects.create(rep=linked_answer)
@@ -319,7 +343,11 @@ def prompt(request):
         question.save()
         # Générer un titre dès la première question si le titre est par défaut
         if current_prompt.title == "Nouveau prompt":
-            current_prompt.title = generate_prompt_title(user_input)
+            try:
+                current_prompt.title = generate_prompt_title(user_input)
+            except Exception as e:
+                print(f"Erreur lors de la génération du titre: {str(e)}")
+                current_prompt.title = f"Prompt du {date.today().strftime('%d/%m/%Y')}"
             current_prompt.save()
         # Conserver le filtre workspace dans l'URL après POST
         return redirect(f"{request.path}?prompt_id={current_prompt.id}{'&workspace='+workspace_selected if workspace_selected else ''}")
