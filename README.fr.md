@@ -282,37 +282,12 @@ Ce projet utilise un double système de gestion de version :
 - **Git/GitHub** - Gestion de version principale ([github.com/thmsgo18/asadi](https://github.com/thmsgo18/asadi))
 - **SVN** - Gestion de version historique pour la compatibilité institutionnelle
 
-Cette double approche garantit :
-- Des workflows collaboratifs modernes via GitHub (pull requests, issues, actions)
-- La compatibilité avec l'infrastructure SVN institutionnelle existante
-- La synchronisation automatique entre les deux systèmes via `sync_svn_git.sh`
-
-## Contribution
-
-Il s'agit d'un projet académique réalisé dans le cadre d'un programme de Licence. Bien que le projet soit principalement à des fins éducatives, les retours et suggestions sont les bienvenus.
-
-Si vous souhaitez contribuer ou signaler des problèmes :
-1. Forkez le dépôt
-2. Créez une branche de fonctionnalité (`git checkout -b feature/NouvelleFonctionnalite`)
-3. Committez vos modifications (`git commit -m 'Ajout de NouvelleFonctionnalite'`)
-4. Poussez vers la branche (`git push origin feature/NouvelleFonctionnalite`)
-5. Ouvrez une Pull Request
-
-## Licence
-
-Ce projet fait partie d'un cursus académique et est fourni tel quel à des fins éducatives.
-
 ## Auteurs
 
-Étudiants en Licence Informatique - Promotion L3 2024-2025
-
-## Remerciements
-
-- Encadrants et enseignants de l'université
-- OpenAI pour les modèles GPT
-- L'équipe ChromaDB pour la base de données vectorielle
-- Les communautés Django et Python
-- Tous les contributeurs open-source dont les bibliothèques ont rendu ce projet possible
+- [Thomas Gourmelen](https://github.com/thmsgo18)
+- [Ali Traore](https://github.com/Taliii7)
+- [Valentin Ponnoussamy](https://github.com/Yvngval)
+- [Malik Djaffer Abdel](https://github.com/malik439)
 
 ---
 

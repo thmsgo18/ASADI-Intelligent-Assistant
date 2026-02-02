@@ -282,37 +282,12 @@ This project uses dual version control:
 - **Git/GitHub** - Primary version control ([github.com/thmsgo18/asadi](https://github.com/thmsgo18/asadi))
 - **SVN** - Legacy version control for institutional compatibility
 
-This dual approach ensures:
-- Modern collaborative workflows via GitHub (pull requests, issues, actions)
-- Compatibility with existing institutional SVN infrastructure
-- Automatic synchronization between both systems via `sync_svn_git.sh`
-
-## Contributing
-
-This is an academic project completed as part of a Bachelor's degree program. While the project is primarily for educational purposes, feedback and suggestions are welcome.
-
-If you'd like to contribute or report issues:
-1. Fork the repository
-2. Create a feature branch (`git checkout -b feature/AmazingFeature`)
-3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
-4. Push to the branch (`git push origin feature/AmazingFeature`)
-5. Open a Pull Request
-
-## License
-
-This project is part of an academic curriculum and is provided as-is for educational purposes.
-
 ## Authors
 
-Bachelor's Degree in Computer Science Students - L3 Promotion 2024-2025
-
-## Acknowledgments
-
-- University supervisors and faculty
-- OpenAI for GPT models
-- ChromaDB team for the vector database
-- Django and Python communities
-- All open-source contributors whose libraries made this project possible
+- [Thomas Gourmelen](https://github.com/thmsgo18)
+- [Ali Traore](https://github.com/Taliii7)
+- [Valentin Ponnoussamy](https://github.com/Yvngval)
+- [Malik Djaffer Abdel](https://github.com/malik439)
 
 ---
 
