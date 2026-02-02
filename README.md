@@ -280,12 +280,6 @@ Comprehensive documentation is available in the `documentation/` directory:
 - **Technique.pdf** - Technical documentation
 - **Cahier de recette.pdf** - Acceptance testing documentation
 
-## Version Control
-
-This project uses dual version control:
-- **Git/GitHub** - Primary version control ([github.com/thmsgo18/asadi](https://github.com/thmsgo18/asadi))
-- **SVN** - Legacy version control for institutional compatibility
-
 ## Authors
 
 - [Thomas Gourmelen](https://github.com/thmsgo18)

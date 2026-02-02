@@ -280,12 +280,6 @@ Une documentation complète est disponible dans le répertoire `documentation/` 
 - **Technique.pdf** - Documentation technique
 - **Cahier de recette.pdf** - Documentation de recette
 
-## Gestion de version
-
-Ce projet utilise un double système de gestion de version :
-- **Git/GitHub** - Gestion de version principale ([github.com/thmsgo18/asadi](https://github.com/thmsgo18/asadi))
-- **SVN** - Gestion de version historique pour la compatibilité institutionnelle
-
 ## Auteurs
 
 - [Thomas Gourmelen](https://github.com/thmsgo18)
