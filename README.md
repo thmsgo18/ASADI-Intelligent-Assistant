@@ -8,7 +8,7 @@
 
 ## 🎥 Presentation Video
 
-[![ASADI demo](documentation/assets/asadi_demo.gif)](https://youtu.be/R9_37XSuseA)
+[![ASADI demo](documentation/asadi_demo.gif)](https://youtu.be/R9_37XSuseA)
 
 *Click on the gif above to watch the project presentation video*
 
