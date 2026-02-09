@@ -8,9 +8,9 @@
 
 ## 🎥 Presentation Video
 
-[![ASADI Presentation](https://img.youtube.com/vi/R9_37XSuseA/maxresdefault.jpg?v=2)](https://youtu.be/R9_37XSuseA?si=hrPrp8v_6X1IcVmh)
+[![ASADI demo](documentation/assets/asadi_demo.gif)](https://youtu.be/R9_37XSuseA)
 
-*Click on the image above to watch the project presentation video*
+*Click on the gif above to watch the project presentation video*
 
 > **Bachelor's Degree Final Project** - Computer Science
 > 

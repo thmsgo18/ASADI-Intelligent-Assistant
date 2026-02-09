@@ -1,0 +1,79 @@
+import pdfplumber
+import pymupdf
+
+
+# méthode pour extraire le texte d'un fichier .txt
+def extraireText(cheminTxt):
+    fichier  = open(cheminTxt,'r')
+    lignes = fichier.readlines()
+    for ligne in lignes:
+        print(ligne)
+
+
+
+
+# méthode pour extraire le teexte d'un fichier pdf (non scanné) (on fait exprès de ne pas capturer d'images et de tableaux)
+def extraire_textePyMu(chemin_pdf):
+    texte_complet = ""
+    doc = pymupdf.open(chemin_pdf)
+    for page in doc:
+        texte_complet += page.get_text() + "\n"
+    return texte_complet
+
+# méthode pour extraire le texte d'un fichier .pdf(non scanné ) avec la bibliothèque pdfplumber 
+# on utilise ici 2 bibliothèques pour ainsi faire des tests de performances ( temps, précision)
+
+def extraireTextPlumber(cheminPdf):
+    with pdfplumber.open(cheminPdf) as pdf:
+        res=""
+        for page in pdf.pages:
+            res+= page.extract_text()
+        return res
+
+# méhode pur extraire des tableaux d'un pdf non scanné (meilleur bibliothèque pour cette extraction précise)
+def extraireTableauxPdf(cheminPdf):
+    res = []
+    with pdfplumber.open(cheminPdf) as pdf:
+        a= None
+        for page in pdf.pages:
+            a= page.extract_table()
+            if a is not None:
+                res.append(a)
+        return res
+
+
+
+
+# Arrêt dès qu'on trouve du texte
+def est_scanne(path):
+    with fitz.open(path) as doc:
+        return all(not page.get_text().strip() for page in doc)
+
+#extraireText("cheminFichier.txt")
+
+#start = time.perf_counter()
+
+#print(extraireTextPlumber("cheminFichier.pdf"))
+
+#end = time.perf_counter()
+
+#print("Temps Plumber",end-start)
+
+#print("..............")
+
+
+#start = time.perf_counter()
+
+#print(extraire_textePyMu("cheminFichier.pdf"))
+
+#end = time.perf_counter()
+#print("Temps PyMu",end-start)
+#print("..............")
+
+#print(extraireTableauxPdf("cheminFichier.pdf"))
+
+
+
+
+
+

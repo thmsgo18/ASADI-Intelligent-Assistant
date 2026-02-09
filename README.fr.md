@@ -8,9 +8,10 @@
 
 ## 🎥 Vidéo de présentation
 
-[![Présentation ASADI](https://img.youtube.com/vi/R9_37XSuseA/maxresdefault.jpg?v=2)](https://youtu.be/R9_37XSuseA?si=hrPrp8v_6X1IcVmh)
+[![ASADI demo](documentation/assets/asadi_demo.gif)](https://youtu.be/R9_37XSuseA)
 
-*Cliquez sur l'image ci-dessus pour visionner la vidéo de présentation du projet*
+
+*Cliquez sur le gif ci-dessus pour visionner la vidéo de présentation du projet*
 
 > **Projet de Fin de Licence** - Informatique
 > 
